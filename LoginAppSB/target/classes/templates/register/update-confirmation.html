@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Updation Confirmation</title>
+</head>
+
+<body>
+
+	<h2>User updated successfully</h2>
+
+	<!-- display first name, last name and email -->
+	<ul>
+		<li th:text="'User name: ' + ${webUser.username}"></li>
+		<li th:text="'Email name: ' + ${webUser.email}"></li>
+	</ul>
+
+	<hr>
+	
+	<a th:href="@{/systems}"  class="btn btn-info btn-sm  ml-5">Back to Admin Panel</a>
+	
+</body>
+
+</html>

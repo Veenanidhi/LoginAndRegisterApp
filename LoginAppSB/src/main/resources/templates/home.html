@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <title>Home Page</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+<div class="container" style="padding-top: 50px;">
+    <div class="row d-flex justify-content-center ">
+        <h2 style="text-align:center">Home Page</h2>
+
+
+        <p>
+            Welcome to home page
+        </p>
+
+
+
+        <!-- display user name and role(s) -->
+
+        <p >
+            Username: <span sec:authentication="principal.username"></span>
+            <br><br>
+            Role: <span sec:authentication="principal.authorities"></span>
+
+            <!-- display first name, last name and email -->
+        <div th:if="${session.user}" >
+            <p th:text="'User name: ' + ${session.user.username}"></p>
+            <p th:text="'Email: ' + ${session.user.email}"></p>
+
+        </div>
+
+        </p>
+
+        <div sec:authorize="hasRole('ADMIN')">
+
+            <!-- Add a link to point to /systems ... this is for the admins -->
+
+            <p>
+                <a th:href="@{/systems}">Admin Panel</a>
+            </p>
+
+        </div>
+
+
+        <!-- Add a logout button -->
+        <form  action="#" th:action="@{/logout}"
+               method="POST">
+
+            <input type="submit" value="Logout" class="btn btn-outline-success mt-2" />
+
+        </form>
+    </div>
+</div>
+
+</body>
+
+</html>
